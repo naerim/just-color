@@ -8,6 +8,10 @@ public class TomoController : MonoBehaviour
     float walkForce = 30.0f;
     float maxWalkSpeed = 3.0f;
     Animator animator;
+    public float power = 1000f;
+
+    public GameObject FlowerPrefab; // 던질 꽃을 저장
+    public Transform SpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,13 @@ public class TomoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        if (pos.x < 0f) pos.x = 0f;
+        if (pos.x > 1f) pos.x = 1f;
+        if (pos.y < 0f) pos.y = 0f;
+        if (pos.y > 1f) pos.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         // 좌우 이동
         int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
@@ -41,5 +52,19 @@ public class TomoController : MonoBehaviour
 
         // 플레이어 속도에 맞춰 애니메이션 속도를 바꾼다.
         this.animator.speed = speedx / 2.0f;
+
+        // 스페이스바 누르면 꽃을 던짐
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
+
+    // 꽃 던지는 것을 관리하는 함수
+    void Shoot()
+    {
+        GameObject newBullet = Instantiate(FlowerPrefab, SpawnPoint.position, Quaternion.identity) as GameObject;
+        newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * power);
+    }
+  
 }
