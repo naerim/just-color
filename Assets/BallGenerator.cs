@@ -21,6 +21,7 @@ public class BallGenerator : MonoBehaviour
         this.delta += Time.deltaTime;
         if(this.delta > this.span)
         {
+        
             this.delta = 0;
             GameObject go = Instantiate(ballPrefab) as GameObject;
             int px = Random.Range(-6, 7);
