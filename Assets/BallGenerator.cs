@@ -17,15 +17,18 @@ public class BallGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 공을 1초마다 한 개씩 생성
-        this.delta += Time.deltaTime;
-        if(this.delta > this.span)
+        if(TheEnd.over == false)
         {
-        
-            this.delta = 0;
-            GameObject go = Instantiate(ballPrefab) as GameObject;
-            int px = Random.Range(-6, 7);
-            go.transform.position = new Vector3(px, 7, 0);
+            // 공을 1초마다 한 개씩 생성
+            this.delta += Time.deltaTime;
+            if (this.delta > this.span)
+            {
+
+                this.delta = 0;
+                GameObject go = Instantiate(ballPrefab) as GameObject;
+                int px = Random.Range(-6, 7);
+                go.transform.position = new Vector3(px, 7, 0);
+            }
         }
     }
 }
