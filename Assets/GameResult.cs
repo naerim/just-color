@@ -10,6 +10,7 @@ public class GameResult : MonoBehaviour
     public Text resultScore;
     public Text bestScore;
     public GameObject resultUI;
+    public GameObject NewScore;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class GameResult : MonoBehaviour
             if (highScore < result)
             {
                 PlayerPrefs.SetInt("HighScore", result);
+                NewScore.SetActive(true);
             }
 
             resultScore.text = "Result Score: " + result;
@@ -49,6 +51,6 @@ public class GameResult : MonoBehaviour
 
     public void GoStartScene()
     {
-
+        SceneManager.LoadScene("Start");
     }
 }
