@@ -32,5 +32,9 @@ public class TheEnd : MonoBehaviour
         {
             over = true;
         }
+        else if (coll.gameObject.tag == "OrangeBall")
+        {
+            over = true;
+        }
     }
 }
