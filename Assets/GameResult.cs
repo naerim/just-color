@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameResult : MonoBehaviour
 {
     private int highScore;
@@ -12,10 +13,12 @@ public class GameResult : MonoBehaviour
     public GameObject resultUI;
     public GameObject NewScore;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        if(PlayerPrefs.HasKey("HighScore"))
+
+        if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetInt("HighScore");
         }
@@ -30,6 +33,7 @@ public class GameResult : MonoBehaviour
     {
         if(TheEnd.over)
         {
+
             resultUI.SetActive(true);
             int result = Mathf.FloorToInt(Timer.time);
 
@@ -41,6 +45,7 @@ public class GameResult : MonoBehaviour
 
             resultScore.text = "Result Score: " + result;
             bestScore.text = "Best Score: " + highScore;
+
         }
     }
 
